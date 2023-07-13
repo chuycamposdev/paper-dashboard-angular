@@ -7,7 +7,8 @@ export const AppRoutes: Routes = [
     path: '',
     redirectTo: 'dashboard',
     pathMatch: 'full',
-  }, {
+  }, 
+  {
     path: '',
     component: AdminLayoutComponent,
     children: [
@@ -15,6 +16,10 @@ export const AppRoutes: Routes = [
       path: '',
       loadChildren: () => import('./layouts/admin-layout/admin-layout.module').then(x => x.AdminLayoutModule)
   }]},
+  {
+    path: 'auth',
+    loadChildren: () => import('./modules/auth/auth.module').then(x => x.AuthModule)
+  },
   {
     path: '**',
     redirectTo: 'dashboard'

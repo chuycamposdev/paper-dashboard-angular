@@ -13,6 +13,11 @@ import { AppRoutes } from './app.routing';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpErrorInterceptor } from "./interceptors/http-error.interceptor";
+
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -28,9 +33,18 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
     NavbarModule,
     ToastrModule.forRoot(),
     FooterModule,
-    FixedPluginModule
+    FixedPluginModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptor,
+      multi: true
+    },
+    CookieService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
