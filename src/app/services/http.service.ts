@@ -28,6 +28,7 @@ export abstract class HttpService {
   }
 
   post(record: any, method: string = ""): Observable<any>{
+    console.log(this.apiURL);
     return this.http
       .post<any>(
         this.apiURL.concat(method),

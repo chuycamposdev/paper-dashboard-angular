@@ -7,7 +7,7 @@ import { HttpService } from '../http.service';
 export class AccountService extends HttpService {
   
   defineEnpoint(): string {
-    return 'Account';
+    return 'Account/';
   }
 
   registerAccount(user){
